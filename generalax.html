@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Asphyxia — Types & General Pathology</title>
+  <style>
+    body{margin:0;font-family:Inter,Arial;background:#081226;color:#e8f3ff;line-height:1.6;padding:0 16px}
+    header{text-align:center;padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.1)}
+    h1{margin:0;font-size:28px;font-weight:800}
+    .content{max-width:900px;margin:20px auto;padding:20px;background:#0f1724;border-radius:12px}
+    h2{margin-top:28px;font-size:22px;border-left:4px solid #06b6d4;padding-left:10px}
+    .tools{text-align:center;margin:20px 0}
+    button{background:#06b6d4;border:none;padding:10px 18px;margin:5px;border-radius:8px;font-weight:700;color:#022;cursor:pointer}
+    .accordion{margin-top:20px}
+    .acc-item{border:1px solid rgba(255,255,255,0.1);border-radius:10px;margin-bottom:10px}
+    .acc-head{padding:14px;cursor:pointer;background:rgba(255,255,255,0.06)}
+    .acc-body{display:none;padding:14px;background:rgba(255,255,255,0.03)}
+    p,li{font-size:15px;margin:8px 0}
+    ul{padding-left:20px}
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Asphyxia</h1>
+  <p style="color:#9aa8bd">Medicolegal Overview & General Pathology</p>
+</header>
+
+<!--<div class="tools">-->
+<!--  <button id="printBtn">Print</button>-->
+<!--  <button id="downloadBtn">Download</button>-->
+<!--  <button id="copyBtn">Copy Text</button>-->
+<!--</div>-->
+
+<div class="content">
+
+  <h2>Introduction</h2>
+  <div class="accordion">
+    <div class="acc-item">
+      <div class="acc-head" data-target="a1"><strong>Definition & Basic Concept</strong></div>
+      <div class="acc-body" id="a1">
+        <p>Many rapid deaths of medicolegal importance are fundamentally due to an interference with oxygenation of the tissues. Such deaths are classified according to how hypoxia (oxygen deficiency) or anoxia (complete absence of oxygen) is initiated.</p>
+        <p>Death occurs due to failure of proper oxygenation of tissues resulting from hypoxia or anoxia.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>General Pathological Changes in Asphyxia</h2>
+  <div class="accordion">
+    <div class="acc-item">
+      <div class="acc-head" data-target="a2"><strong>Pathological Changes</strong></div>
+      <div class="acc-body" id="a2">
+        <ul>
+          <li><strong>Capillary dilation:</strong> Capillaries are highly sensitive to hypoxia/anoxia, leading to dilation and blood stagnation. This causes marked capillary congestion — a major feature of rapid hypoxic or anoxic death.</li>
+          <li><strong>Petechial haemorrhages:</strong> Injury to capillary walls often produces pinpoint hemorrhages.</li>
+          <li><strong>↑ Capillary permeability → oedema.</strong></li>
+          <li><strong>Cyanosis</strong> — bluish discoloration from deoxygenated blood.</li>
+          <li><strong>Postmortem fluidity of blood</strong> — due to incomplete coagulation.</li>
+          <li><strong>Cardiac dilatation</strong> — enlarged heart chambers from venous congestion.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h2>Different Types of Asphyxia</h2>
+  <div class="accordion">
+    <div class="acc-item">
+      <div class="acc-head" data-target="a3"><strong>Classification</strong></div>
+      <div class="acc-body" id="a3">
+        <ul>
+          <li><strong>Mechanical Asphyxia</strong> — physical obstruction of breathing (e.g., strangulation, smothering, drowning).</li>
+          <li><strong>Environmental Asphyxia</strong> — due to reduced oxygen in environment (e.g., confined spaces, gas displacement).</li>
+          <li><strong>Pathological Asphyxia</strong> — due to disease conditions affecting breathing (e.g., airway infections, asthma, anaphylaxis).</li>
+          <li><strong>Traumatic Asphyxia</strong> — due to mechanical restriction of chest movement (e.g., crush injuries, crowd crush).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+document.querySelectorAll('.acc-head').forEach(head=>{
+  head.addEventListener('click',()=>{
+    const targetId=head.getAttribute('data-target');
+    const body=document.getElementById(targetId);
+
+    document.querySelectorAll('.acc-body').forEach(sec=>sec.style.display='none');
+
+    if(body.style.display!=='block'){
+      body.style.display='block';
+      body.scrollIntoView({behavior:'smooth',block:'center'});
+    }
+  });
+});
+
+const first=document.querySelector('.acc-body'); if(first){first.style.display='block';}
+
+document.getElementById('printBtn').onclick=()=>window.print();
+
+document.getElementById('downloadBtn').onclick=()=>{
+  const html=document.documentElement.outerHTML;
+  const blob=new Blob([html],{type:'text/html'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url; a.download='asphyxia.html'; a.click();
+  URL.revokeObjectURL(url);
+};
+
+document.getElementById('copyBtn').onclick=()=>{
+  navigator.clipboard.writeText(document.body.innerText).then(()=>alert('Copied'));};
+</script>
+
+</body>
+</html>
